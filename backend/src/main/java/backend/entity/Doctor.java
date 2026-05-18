@@ -1,8 +1,5 @@
 package backend.entity;
 
-import java.util.List;
-
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,8 +16,11 @@ public class Doctor {
 
     private String speciality;
 
-    @ElementCollection
-    private List<String> availableTimes;
+    private String availableTimes;
+
+    private String email;
+
+    private String password;
 
     public Long getId() {
         return id;
@@ -46,11 +46,27 @@ public class Doctor {
         this.speciality = speciality;
     }
 
-    public List<String> getAvailableTimes() {
+    public String getAvailableTimes() {
         return availableTimes;
     }
 
-    public void setAvailableTimes(List<String> availableTimes) {
+    public void setAvailableTimes(String availableTimes) {
         this.availableTimes = availableTimes;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
