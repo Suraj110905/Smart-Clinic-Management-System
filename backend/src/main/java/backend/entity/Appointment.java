@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import jakarta.validation.constraints.Future;
 
 @Entity
 @Data
@@ -24,6 +25,10 @@ public class Appointment {
     @ManyToOne
     private Patient patient;
 
+    @NotNull
+    private LocalDateTime appointmentTime;
+
+    @Future
     @NotNull
     private LocalDateTime appointmentTime;
 

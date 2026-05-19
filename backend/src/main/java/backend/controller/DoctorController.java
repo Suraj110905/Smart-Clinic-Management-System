@@ -3,6 +3,7 @@ package backend.controller;
 import backend.entity.Doctor;
 import backend.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,5 +39,22 @@ public class DoctorController {
                               @RequestParam String password) {
 
         return doctorService.loginDoctor(email, password);
+
     }
+    @GetMapping("/availability")
+public ResponseEntity<?> getAvailability(
+        @RequestParam Long doctorId,
+        @RequestParam String date,
+        @RequestHeader("Authorization") String token
+) {
+
+    if(token == null || token.isEmpty()) {
+        return ResponseEntity.badRequest()
+                .body("Invalid Token");
+    }
+
+    return ResponseEntity.ok(
+            doctorService.getAvailableTimeSlots(doctorId, date)
+    );
+}
 }
